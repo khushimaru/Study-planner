@@ -1,0 +1,118 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: olive;
+}
+
+.container {
+    text-align: center;
+    background-color: #c7c7a5;
+    padding: 80px; /* Increased padding to make the container bigger */
+    border-radius: 20px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+    width: 1250px;
+    height: 500px;
+}
+
+#timer {
+    font-size: 96px; /* Increased the font size for the timer */
+    margin-bottom: 40px;
+}
+
+button {
+    font-size: 36px; /* Increased the font size for buttons */
+    padding: 20px 40px; /* Increased padding for buttons */
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: olive;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: rgb(138, 138, 47);
+    transform: scale(1.05);
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+.tab {
+    cursor: pointer;
+    font-size: 24px; /* Increased font size for the tabs */
+    padding: 20px;
+    flex-grow: 1;
+    text-align: center;
+    background-color: #f8f9fa;
+    color: olive;
+    border-radius: 10px 10px 0 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.tab.active {
+    background-color: olive;
+    color: white;
+}
+
+.tab:hover {
+    background-color: rgba(135, 135, 0, 0.396);
+    color: white;
+}
+
+body {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+body.loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+        .circles {
+            width: 500px;
+            height: 80px;
+            border: 2px solid #ddd;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 50px auto;
+        }
+
+        .circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .circle-1 {
+            background-color: rgb(127, 127, 70);
+        }
+
+        .circle-2 {
+            background-color: rgb(89, 89, 168);
+        }
+
+        .circle-3 {
+            background-color: rgb(154, 76, 76);
+        }
+
+        .circle-4 {
+            background-color: rgb(168, 101, 143);
+        }
+
+        .circle-5 {
+            background-color: rgb(169, 147, 80);
+        }

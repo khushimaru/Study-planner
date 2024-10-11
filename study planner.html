@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>systm.com</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+       
+        <div class="topnav" id="topnav">
+            <img src="logo.png" height="50px" class="logo">
+            <strong class="name">systm</strong>
+            <strong><button class="openbtn" onclick="openNav()">&#9776;</button></strong>
+        </div>
+
+        <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="text-align: left;">>></a>
+            <a href="#" style="text-align: right;">Motivation</a>
+            <a href="#" style="text-align: right;">Notes</a>
+            <a href="#" style="text-align: right;">Calendar</a>
+            <a href="#" style="text-align: right;">Meditation</a>
+            <a href="#" style="text-align: right;">Checklist</a>
+        </div>
+
+        
+        <div class="pomodoro-box" id="box">
+            <div class="pomodoro">
+                <p><strong>Pomodoro</strong></p>
+                The pomodoro technique is a time management method based on 25-minute stretches of focused work broken by 5-minute breaks. 
+                Longer breaks, typically 15 to 30 minutes, are taken after 4 consecutive work intervals. 
+                Each work interval is called a pomodoro.
+                <button class="getstarted-1"><a href="pomodoro.html">Get started</a></button>
+            </div>
+            <img src="dyh.jpg" height="200px" width="200px" class="pomodoro-img">
+        </div>
+
+        <div class="pomodoro-box" id="box">
+            <div class="pomodoro">
+                <p><strong>Leitner System</strong></p>
+                The leitner system employs the concept of spaced repetition, an approach to memorization that uses time intervals. 
+                Rather than cramming information into your brain all in one sitting, spaced repetition encourages learners to space out learning over periods of time.
+                (Flash cards provided)
+                <button class="getstarted-1">Get started</button>
+            </div>
+            <img src="dyh.jpg" height="200px" width="200px" class="pomodoro-img">
+        </div>
+
+        <div class="pomodoro-box" id="box">
+            <div class="pomodoro">
+                <p><strong>Feynman</strong></p>
+                The Feynman technique rejects memorizing facts without understanding their meaning and favors true comprehension through selection, 
+                research, writing, explaining, and refining. Learn it yourself, then teach it to a toddler.
+                <button class="getstarted-1">Get started</button>
+            </div>
+            <img src="dyh.jpg" height="200px" width="200px" class="pomodoro-img">
+        </div>
+
+        <div class="pomodoro-box" id="box">
+            <div class="pomodoro">
+                <p><strong>Active Recall</strong></p>
+                Active Recall (also known as Retrieval Practice, Practice Testing, or The Testing Effect) is a study method that involves 
+                actively recalling information from memory as a way to reinforce learning, instead of just reading over material.
+                <button class="getstarted-1">Get started</button>
+            </div>
+            <img src="dyh.jpg" height="200px" width="200px" class="pomodoro-img">
+        </div>
+        
+        <script>
+            function openNav() {
+                document.getElementById("mySidebar").style.width = "175px";
+            }
+
+            function closeNav() {
+                document.getElementById("mySidebar").style.width = "0";
+            }
+            window.addEventListener('load', function() {
+                document.body.classList.add('loaded');
+            });
+        </script>
+    </body>
+</html>
