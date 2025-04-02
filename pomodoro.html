@@ -7,138 +7,188 @@
     <link rel="stylesheet" href="pomodoro.css">
 </head>
 <body>
+    
     <div class="container">
         <div class="tabs">
-            <div class="tab active" id="work-tab">Work</div>
-            <div class="tab" id="break-tab">Break</div>
-            <div class="tab" id="long-break-tab">Long Break</div>
+            <div class="tab active" id="work-tab" data-color="rgb(127, 127, 70)">Work</div>
+            <div class="tab" id="break-tab" data-color="rgb(89, 89, 168)">Break</div>
+            <div class="tab" id="long-break-tab" data-color="rgb(154, 76, 76)">Long Break</div>
         </div>
         <h1 id="timer-label">Pomodoro Timer</h1>
         <div id="timer">25:00</div>
         <button id="start">Start</button>
-        <button id="reset">Reset</button>
+        <button id="reset">Reset</button> 
 
         <div class="circles">
-            <div class="circle circle-1"></div>
-            <div class="circle circle-2"></div>
-            <div class="circle circle-3"></div>
-            <div class="circle circle-4"></div>
-            <div class="circle circle-5"></div>
-        </div>
+            <div class="circle circle-1" onclick="changeColor('rgb(127, 127, 70)', 'rgb(199, 199, 165)', this)"></div>
+            <div class="circle circle-2" onclick="changeColor('rgb(89, 89, 168)', 'rgb(177, 177, 210)', this)"></div>
+            <div class="circle circle-3" onclick="changeColor('rgb(154, 76, 76)', 'rgb(254, 215, 215)', this)"></div>
+            <div class="circle circle-4" onclick="changeColor('rgb(168, 101, 143)', 'rgb(231, 199, 219)', this)"></div>
+            <div class="circle circle-5" onclick="changeColor('rgb(95, 58, 15)', 'rgb(156, 139, 118)', this)"></div>
+        </div>        
     </div>
+
 
     <script>
         let isRunning = false;
-        let currentMode = 'work';
-        let workTime = 25 * 60;
-        let breakTime = 5 * 60;
-        let longBreakTime = 15 * 60;
-        let currentTime = workTime;
-        let timerInterval;
+let currentMode = 'work';
+let workTime = 25 * 60;
+let breakTime = 5 * 60;
+let longBreakTime = 15 * 60;
+let currentTime = workTime;
+let timerInterval;
+let selectedCircleColor = 'olive'; 
 
-        const timerDisplay = document.getElementById("timer");
-        const timerLabel = document.getElementById("timer-label");
-        const startButton = document.getElementById("start");
-        const resetButton = document.getElementById("reset");
-        const workTab = document.getElementById("work-tab");
-        const breakTab = document.getElementById("break-tab");
-        const longBreakTab = document.getElementById("long-break-tab");
+const timerDisplay = document.getElementById("timer");
+const timerLabel = document.getElementById("timer-label");
+const startButton = document.getElementById("start");
+const resetButton = document.getElementById("reset");
+const workTab = document.getElementById("work-tab");
+const breakTab = document.getElementById("break-tab");
+const longBreakTab = document.getElementById("long-break-tab");
 
-        function updateTimerDisplay(time) {
-            const minutes = Math.floor(time / 60);
-            const seconds = time % 60;
-            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
+function updateTimerDisplay(time) {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
 
-        function startTimer() {
-            if (!isRunning) {
-                timerInterval = setInterval(() => {
-                    if (currentTime > 0) {
-                        currentTime--;
-                        updateTimerDisplay(currentTime);
-                    } else {
-                        clearInterval(timerInterval);
-                        switchMode(); 
-                        startTimer(); 
-                    }
-                }, 1000);
-                startButton.textContent = "Pause";
+function startTimer() {
+    if (!isRunning) {
+        timerInterval = setInterval(() => {
+            if (currentTime > 0) {
+                currentTime--;
+                updateTimerDisplay(currentTime);
             } else {
                 clearInterval(timerInterval);
-                startButton.textContent = "Start";
+                switchMode(); 
+                startTimer(); 
             }
-            isRunning = !isRunning;
-        }
+        }, 1000);
+        startButton.textContent = "Pause";
+    } else {
+        clearInterval(timerInterval);
+        startButton.textContent = "Start";
+    }
+    isRunning = !isRunning;
+}
 
-        function resetTimer() {
-            clearInterval(timerInterval);
-            isRunning = false;
-            setMode(currentMode);
-            updateTimerDisplay(currentTime);
-            startButton.textContent = "Start";
-        }
+function resetTimer() {
+    clearInterval(timerInterval);
+    isRunning = false;
+    setMode(currentMode);
+    updateTimerDisplay(currentTime);
+    startButton.textContent = "Start";
+}
 
-        function setMode(mode) {
-            currentMode = mode;
-            switch (mode) {
-                case 'work':
-                    currentTime = workTime;
-                    timerLabel.textContent = "Work Timer";
-                    break;
-                case 'break':
-                    currentTime = breakTime;
-                    timerLabel.textContent = "Break Timer";
-                    break;
-                case 'longBreak':
-                    currentTime = longBreakTime;
-                    timerLabel.textContent = "Long Break Timer";
-                    break;
-            }
-            updateTimerDisplay(currentTime);
-        }
+function setMode(mode) {
+    currentMode = mode;
+    switch (mode) {
+        case 'work':
+            currentTime = workTime;
+            timerLabel.textContent = "Work Timer";
+            break;
+        case 'break':
+            currentTime = breakTime;
+            timerLabel.textContent = "Break Timer";
+            break;
+        case 'longBreak':
+            currentTime = longBreakTime;
+            timerLabel.textContent = "Long Break Timer";
+            break;
+    }
+    updateTimerDisplay(currentTime);
 
-        function switchMode() {
-            if (currentMode === 'work') {
-                setMode('break');
-            } else if (currentMode === 'break') {
-                setMode('longBreak');
-            } else {
-                setMode('work');
-            }
-        }
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+        tab.style.color = 'black'; 
+        tab.style.backgroundColor = 'white'; 
+    });
 
-        workTab.addEventListener("click", () => {
-            setMode('work');
-            workTab.classList.add('active');
-            breakTab.classList.remove('active');
-            longBreakTab.classList.remove('active');
-            resetTimer();
-        });
+    const activeTab = document.querySelector('.tab.active');
+    if (activeTab) {
+        activeTab.style.backgroundColor = selectedCircleColor; 
+        activeTab.style.color = 'white'; 
+    }
+}
 
-        breakTab.addEventListener("click", () => {
-            setMode('break');
-            breakTab.classList.add('active');
-            workTab.classList.remove('active');
-            longBreakTab.classList.remove('active');
-            resetTimer();
-        });
+function switchMode() {
+    if (currentMode === 'work') {
+        setMode('break');
+    } else if (currentMode === 'break') {
+        setMode('longBreak');
+    } else {
+        setMode('work');
+    }
+}
 
-        longBreakTab.addEventListener("click", () => {
-            setMode('longBreak');
-            longBreakTab.classList.add('active');
-            workTab.classList.remove('active');
-            breakTab.classList.remove('active');
-            resetTimer();
-        });
+workTab.addEventListener("click", () => {
+    setMode('work');
+    workTab.classList.add('active');
+    breakTab.classList.remove('active');
+    longBreakTab.classList.remove('active');
+    resetTimer();
+});
 
-        startButton.addEventListener("click", startTimer);
-        resetButton.addEventListener("click", resetTimer);
+breakTab.addEventListener("click", () => {
+    setMode('break');
+    breakTab.classList.add('active');
+    workTab.classList.remove('active');
+    longBreakTab.classList.remove('active');
+    resetTimer();
+});
 
-        updateTimerDisplay(currentTime);
+longBreakTab.addEventListener("click", () => {
+    setMode('longBreak');
+    longBreakTab.classList.add('active');
+    workTab.classList.remove('active');
+    breakTab.classList.remove('active');
+    resetTimer();
+});
 
-        window.addEventListener('load', function() {
-                document.body.classList.add('loaded');
-            });
+startButton.addEventListener("click", startTimer);
+resetButton.addEventListener("click", resetTimer);
+
+updateTimerDisplay(currentTime);
+
+window.addEventListener('load', function() {
+    document.body.classList.add('loaded');
+});
+
+function changeColor(color, headingColor, circleElement) {
+    document.body.style.backgroundColor = color;
+    document.querySelector('.container').style.backgroundColor = headingColor;
+
+   
+    selectedCircleColor = color; 
+
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+        tab.style.color = 'black'; 
+        tab.style.backgroundColor = 'white'; 
+    });
+
+    
+    const activeTab = document.querySelector('.tab.active');
+    if (activeTab) {
+        activeTab.style.backgroundColor = selectedCircleColor; 
+        activeTab.style.color = 'white'; 
+    }
+
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+        button.style.backgroundColor = color;
+        button.style.color = 'white'; 
+    });
+
+    if (selectedCircle) {
+        selectedCircle.classList.remove('selected');
+    }
+
+    selectedCircle = circleElement;
+    selectedCircle.classList.add('selected');
+
+}
     </script>
 </body>
 </html>

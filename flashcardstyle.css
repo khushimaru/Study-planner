@@ -1,0 +1,127 @@
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-color: olive;
+            color: #333;
+            padding-top: 100px; /* Adjust space for fixed theme buttons */
+        }
+
+        h1 {
+            margin: 20px 0;
+            font-size: 2.5em;
+            color: white;
+        }
+
+        .theme-buttons {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%); /* Center the buttons horizontally */
+            z-index: 1000; /* Ensure the buttons are on top */
+        }
+
+        .theme-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 0 10px;
+            border: 2px solid white;
+            cursor: pointer;
+            transition: transform 0.3s, border 0.3s;
+        }
+
+        .theme-button:hover {
+            transform: scale(1.1);
+            border: 3px solid white;
+        }
+
+        .flashcard-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: rgb(199, 199, 165);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .flashcard-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .flashcard-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: olive;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            background-color: rgb(127, 127, 70);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .add-button {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .flashcards-list {
+            margin-top: 30px;
+            width: 100%;
+            max-width: 800px;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+
+        .flashcard {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .flashcard p {
+            margin: 5px 0;
+        }
+    

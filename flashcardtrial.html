@@ -4,146 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flashcards</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-
-        h1 {
-            margin-top: 20px;
-        }
-
-        .flashcard-container {
-            width: 500px;
-            max-width: 100%;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        .flashcard {
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px 0;
-            background-color: #f9f9f9;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .flashcard-content {
-            font-size: 18px;
-        }
-
-        button {
-            background-color: #ff6666;
-            border: none;
-            color: white;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #ff3333;
-        }
-
-        .new-flashcard {
-            display: flex;
-            flex-direction: column;
-            margin-top: 20px;
-        }
-
-        .new-flashcard input {
-            padding: 10px;
-            margin: 10px 0;
-            font-size: 16px;
-        }
-
-        .add-button {
-            background-color: #4CAF50;
-        }
-
-        .add-button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" href="flashcardstyle.css">
 </head>
 <body>
 
     <h1>Flashcards</h1>
 
-    <div class="flashcard-container">
-        <div id="flashcard-list"></div>
-
-        <div class="new-flashcard">
-            <input type="text" id="question" placeholder="Question">
-            <input type="text" id="answer" placeholder="Answer">
-            <button class="add-button" onclick="addFlashcard()">Add Flashcard</button>
-        </div>
+    <div class="theme-buttons">
+        <button class="theme-button" style="background-color: rgb(127, 127, 70);" onclick="changeTheme('rgb(127, 127, 70)', 'rgb(199, 199, 165)')"></button>
+        <button class="theme-button" style="background-color: rgb(89, 89, 168);" onclick="changeTheme('rgb(89, 89, 168)', 'rgb(177, 177, 210)')"></button>
+        <button class="theme-button" style="background-color: rgb(154, 76, 76);" onclick="changeTheme('rgb(154, 76, 76)', 'rgb(254, 215, 215)')"></button>
+        <button class="theme-button" style="background-color: rgb(168, 101, 143);" onclick="changeTheme('rgb(168, 101, 143)', 'rgb(231, 199, 219)')"></button>
+        <button class="theme-button" style="background-color: rgb(95, 58, 15);" onclick="changeTheme('rgb(95, 58, 15)', 'rgb(156, 139, 118)')"></button>
     </div>
 
-    <script>
-        // Load flashcards from localStorage on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            loadFlashcards();
-        });
+    <div class="flashcard-container">
+        <div class="flashcard-buttons">
+            <button onclick="alert('Previous card')">Previous</button>
+            <button onclick="alert('Next card')">Next</button>
+        </div>
+        <br>
+        <br>
+        <div class="flashcard-inputs">
+            <input type="text" id="question" placeholder="Question" />
+            <input type="text" id="answer" placeholder="Answer" />
+        </div>
 
-        function loadFlashcards() {
-            const flashcards = JSON.parse(localStorage.getItem('flashcards')) || [];
-            const flashcardList = document.getElementById('flashcard-list');
-            flashcardList.innerHTML = '';
+        <button class="add-button" onclick="addFlashcard()">Add Flashcard</button>
 
-            flashcards.forEach((flashcard, index) => {
-                const flashcardDiv = document.createElement('div');
-                flashcardDiv.classList.add('flashcard');
-                flashcardDiv.innerHTML = `
-                    <div class="flashcard-content">
-                        <strong>Q: </strong>${flashcard.question}<br>
-                        <strong>A: </strong>${flashcard.answer}
-                    </div>
-                    <button onclick="deleteFlashcard(${index})">Delete</button>
-                `;
-                flashcardList.appendChild(flashcardDiv);
-            });
-        }
-
-        function addFlashcard() {
-            const question = document.getElementById('question').value;
-            const answer = document.getElementById('answer').value;
-
-            if (question.trim() === '' || answer.trim() === '') {
-                alert('Both question and answer must be filled out!');
-                return;
-            }
-
-            const flashcards = JSON.parse(localStorage.getItem('flashcards')) || [];
-            flashcards.push({ question, answer });
-            localStorage.setItem('flashcards', JSON.stringify(flashcards));
-
-            document.getElementById('question').value = '';
-            document.getElementById('answer').value = '';
-
-            loadFlashcards();
-        }
-
-        function deleteFlashcard(index) {
-            const flashcards = JSON.parse(localStorage.getItem('flashcards')) || [];
-            flashcards.splice(index, 1);
-            localStorage.setItem('flashcards', JSON.stringify(flashcards));
-            loadFlashcards();
-        }
-    </script>
-
+        <div class="flashcards-list" id="flashcards-list">
+       
+        </div>
+    </div>
+<script src="flashcardjs.js"></script>
 </body>
 </html>
